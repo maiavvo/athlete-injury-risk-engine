@@ -18,6 +18,16 @@ import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import plotly.express as px
+import os
+import sys
+
+# Get the project root directory
+if __name__ == "__main__":
+    # Running directly
+    DATA_DIR = '../data'
+else:
+    # Running from gunicorn (from root)
+    DATA_DIR = 'data'
 
 
 class RiskVisualizer:
