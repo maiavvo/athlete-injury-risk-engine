@@ -36,7 +36,7 @@ server = app.server
 
 app.layout = html.Div([
     html.Div([
-        html.H1("💪 Athlete Injury Risk Monitor Pro 💪", 
+        html.H1("💪 Athlete Performance Engine 💪", 
                 style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 10}),
         html.P("Professional monitoring system for training load and injury risk assessment",
                style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 20})
