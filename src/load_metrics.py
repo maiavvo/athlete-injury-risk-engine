@@ -5,16 +5,6 @@ Based on Gabbett 2016 and Hulin 2016 research.
 
 import pandas as pd
 import numpy as np
-import os
-import sys
-
-# Get the project root directory
-if __name__ == "__main__":
-    # Running directly
-    DATA_DIR = '../data'
-else:
-    # Running from gunicorn (from root)
-    DATA_DIR = 'data'
 
 
 class LoadMetricsCalculator:
@@ -28,19 +18,16 @@ class LoadMetricsCalculator:
         
         df = athlete_data.sort_values('date').copy()
         
-        # 7-day rolling sum
         df['acute_load'] = df['session_load'].rolling(
             window=self.acute_window, 
             min_periods=self.acute_window
         ).sum()
         
-        # 28-day rolling average (scaled to match acute timeframe)
         df['chronic_load'] = df['session_load'].rolling(
             window=self.chronic_window,
             min_periods=self.chronic_window
         ).mean() * self.acute_window
         
-        # ACWR calculation
         df['acwr'] = np.where(
             df['chronic_load'] > 0,
             df['acute_load'] / df['chronic_load'],
@@ -64,7 +51,6 @@ class LoadMetricsCalculator:
                                 'weekly_total_load', 'weekly_mean_load', 
                                 'weekly_std_load']
         
-        # Monotony = mean / std
         weekly_stats['training_monotony'] = np.where(
             weekly_stats['weekly_std_load'] > 0,
             weekly_stats['weekly_mean_load'] / weekly_stats['weekly_std_load'],
@@ -115,7 +101,7 @@ class LoadMetricsCalculator:
 
 if __name__ == "__main__":
     print("Loading data...")
-    data = pd.read_csv('data/sample_athlete_data.csv')
+    data = pd.read_csv('../data/sample_athlete_data.csv')
     data['date'] = pd.to_datetime(data['date'])
     
     calculator = LoadMetricsCalculator()
@@ -127,8 +113,8 @@ if __name__ == "__main__":
         processed_data.append(athlete_metrics)
     
     all_metrics = pd.concat(processed_data, ignore_index=True)
-    all_metrics.to_csv('data/athlete_metrics.csv', index=False)
+    all_metrics.to_csv('../data/athlete_metrics.csv', index=False)
     
     print(f"Processed {data['athlete_id'].nunique()} athletes")
     print(f"Records with valid ACWR: {all_metrics['acwr'].notna().sum()}")
-    print("Saved to data/athlete_metrics.csv")
+    print("Saved to ../data/athlete_metrics.csv")
