@@ -23,7 +23,7 @@ COLORS = {
 }
 
 print("Loading data...")
-risk_data = pd.read_csv('../data/athlete_risk_scores.csv')
+risk_data = pd.read_csv('data/athlete_risk_scores.csv')
 risk_data['date'] = pd.to_datetime(risk_data['date'])
 
 min_date = risk_data['date'].min()
@@ -623,7 +623,7 @@ CURRENT STATUS:
 - High Risk Days: {status['high_risk_days']}
         """
         
-        with open(f"../data/{athlete_id}_report.txt", 'w') as f:
+        with open(f"data/{athlete_id}_report.txt", 'w') as f:
             f.write(report_text)
         
         return f"✅ Report exported: data/{athlete_id}_report.txt"
