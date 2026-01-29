@@ -5,6 +5,16 @@ Combines ACWR, load spikes, soreness, and injury history.
 
 import pandas as pd
 import numpy as np
+import os
+import sys
+
+# Get the project root directory
+if __name__ == "__main__":
+    # Running directly
+    DATA_DIR = '../data'
+else:
+    # Running from gunicorn (from root)
+    DATA_DIR = 'data'
 
 
 class InjuryRiskScorer:
