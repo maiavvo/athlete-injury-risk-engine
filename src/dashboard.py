@@ -10,16 +10,6 @@ import dash
 from dash import dcc, html, Input, Output, State
 import numpy as np
 from datetime import datetime, timedelta
-import os
-import sys
-
-# Get the project root directory
-if __name__ == "__main__":
-    # Running directly
-    DATA_DIR = '../data'
-else:
-    # Running from gunicorn (from root)
-    DATA_DIR = 'data'
 
 COLORS = {
     'safe': '#51CF66',
@@ -33,7 +23,7 @@ COLORS = {
 }
 
 print("Loading data...")
-risk_data = pd.read_csv('data/athlete_risk_scores.csv')
+risk_data = pd.read_csv('../data/athlete_risk_scores.csv')
 risk_data['date'] = pd.to_datetime(risk_data['date'])
 
 min_date = risk_data['date'].min()
@@ -46,16 +36,16 @@ server = app.server
 
 app.layout = html.Div([
     html.Div([
-        html.H1("💪 Athlete Injury Risk Engine 💪", 
+        html.H1("🏃 Athlete Injury Risk Engine", 
                 style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 10}),
-        html.P("Algorithm powered injury risk prediction and training load management system",
+        html.P("AI-powered injury risk prediction and training load management system",
                style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 20})
     ]),
     
     dcc.Tabs(id='main-tabs', value='individual', children=[
-        dcc.Tab(label='🎱 Individual Athlete', value='individual'),
-        dcc.Tab(label='🏀 Team Overview', value='team'),
-        dcc.Tab(label='🎥 Compare Athletes', value='compare')
+        dcc.Tab(label='👤 Individual Athlete', value='individual'),
+        dcc.Tab(label='👥 Team Overview', value='team'),
+        dcc.Tab(label='⚖️ Compare Athletes', value='compare')
     ]),
     
     html.Div(id='tab-content', style={'marginTop': 20})
@@ -140,7 +130,6 @@ def create_timeline_figure(athlete_data, athlete_id, date_filter=None):
         specs=[[{"secondary_y": True}], [{"secondary_y": False}]]
     )
     
-    # Top chart: Loads and ACWR
     fig.add_trace(
         go.Bar(x=valid_timeline['date'], y=valid_timeline['session_load'],
                name='Session Load', marker_color=COLORS['acute'], opacity=0.4),
@@ -166,7 +155,6 @@ def create_timeline_figure(athlete_data, athlete_id, date_filter=None):
         row=1, col=1, secondary_y=True
     )
     
-    # ACWR zones
     fig.add_hrect(y0=0.85, y1=1.25, fillcolor=COLORS['safe'], opacity=0.1,
                   row=1, col=1, secondary_y=True)
     fig.add_hrect(y0=1.4, y1=2.0, fillcolor=COLORS['danger'], opacity=0.15,
@@ -175,7 +163,6 @@ def create_timeline_figure(athlete_data, athlete_id, date_filter=None):
     fig.add_hline(y=1.4, line_dash="dash", line_color=COLORS['danger'], line_width=2,
                   row=1, col=1, secondary_y=True)
     
-    # Bottom chart: Risk score
     for category, color in [('High', COLORS['danger']), ('Moderate', COLORS['caution']), ('Low', COLORS['safe'])]:
         cat_data = valid_timeline[valid_timeline['risk_category'] == category]
         if len(cat_data) > 0:
@@ -198,20 +185,8 @@ def create_timeline_figure(athlete_data, athlete_id, date_filter=None):
     fig.update_yaxes(title_text="ACWR", row=1, col=1, secondary_y=True, range=[0, 2.2])
     fig.update_yaxes(title_text="Risk Score", row=2, col=1, range=[0, 100])
     
-    fig.update_xaxes(
-        row=1, col=1,
-        tickformat='%b %d',
-        dtick=86400000*7,
-        tickangle=0
-    )
-    
-    fig.update_xaxes(
-        title_text="Date",
-        row=2, col=1,
-        tickformat='%b %d',
-        dtick=86400000*7,
-        tickangle=0
-    )
+    fig.update_xaxes(row=1, col=1, tickformat='%b %d', dtick=86400000*7, tickangle=0)
+    fig.update_xaxes(title_text="Date", row=2, col=1, tickformat='%b %d', dtick=86400000*7, tickangle=0)
     
     fig.update_layout(
         height=700,
@@ -265,7 +240,7 @@ def render_individual_tab():
                 )
             ], style={'display': 'inline-block', 'width': '500px', 'verticalAlign': 'top'}),
             
-            html.Button('💼 Export Report', id='export-btn', n_clicks=0,
+            html.Button('📄 Export Report', id='export-btn', n_clicks=0,
                        style={'marginLeft': 20, 'padding': '10px 20px', 'fontSize': 14,
                               'backgroundColor': COLORS['acute'], 'color': 'white',
                               'border': 'none', 'borderRadius': '5px', 'cursor': 'pointer'})
@@ -281,7 +256,7 @@ def render_individual_tab():
 
 def render_team_tab():
     return html.Div([
-        html.H2("🏀 Team Risk Overview", style={'marginLeft': 20, 'color': COLORS['text']}),
+        html.H2("👥 Team Risk Overview", style={'marginLeft': 20, 'color': COLORS['text']}),
         html.P("Current status for all athletes based on last 7 days",
                style={'marginLeft': 20, 'color': COLORS['text'], 'marginBottom': 30}),
         html.Div(id='team-grid')
@@ -290,7 +265,7 @@ def render_team_tab():
 
 def render_compare_tab():
     return html.Div([
-        html.H2("🎥 Compare Athletes", style={'marginLeft': 20, 'color': COLORS['text']}),
+        html.H2("⚖️ Compare Athletes", style={'marginLeft': 20, 'color': COLORS['text']}),
         html.Div([
             html.Div([
                 html.Label("Athlete 1:", style={'fontWeight': 'bold', 'marginRight': 10}),
@@ -470,7 +445,6 @@ def update_individual_dashboard(athlete_id, date_range):
     avg_soreness = recent_valid['soreness'].mean()
     current_risk = latest['risk_score']
     
-    # Create gauges
     acwr_gauge = create_gauge(
         value=avg_acwr,
         title="ACWR (7-day avg)",
@@ -539,7 +513,6 @@ def update_individual_dashboard(athlete_id, date_range):
         html.Div([dcc.Graph(figure=soreness_gauge)], style={'width': '25%', 'display': 'inline-block'})
     ])
     
-    # Quick stats
     valid_data = filtered_data[filtered_data['acwr'].notna()]
     high_risk_days = (valid_data['risk_category'] == 'High').sum()
     moderate_risk_days = (valid_data['risk_category'] == 'Moderate').sum()
@@ -582,7 +555,6 @@ def update_individual_dashboard(athlete_id, date_range):
     
     timeline_fig = create_timeline_figure(filtered_data, athlete_id, (start_date, end_date))
     
-    # Recommendations
     recent_risk = valid_data[valid_data['risk_score'] > 25].tail(1)
     
     if len(recent_risk) > 0:
@@ -596,14 +568,14 @@ def update_individual_dashboard(athlete_id, date_range):
         if risk_row['soreness'] > 5:
             recommendations.append(f"⚠️ Elevated soreness ({risk_row['soreness']:.1f}/10) - Prioritize recovery")
         if risk_row['has_prior_injury']:
-            recommendations.append("🤓 Prior injury history - Continue conservative progression")
+            recommendations.append("ℹ️ Prior injury history - Continue conservative progression")
         if risk_row['risk_category'] == 'High':
             recommendations.append("🚨 HIGH RISK - Consider medical consultation")
         
         rec_items = [html.Li(rec, style={'marginBottom': 8}) for rec in recommendations]
         
         rec_panel = html.Div([
-            html.H3("💪 Current Recommendations", style={'color': COLORS['text'], 'marginBottom': 15}),
+            html.H3("📋 Current Recommendations", style={'color': COLORS['text'], 'marginBottom': 15}),
             html.Ul(rec_items)
         ], style={
             'backgroundColor': 'white',
@@ -651,7 +623,7 @@ CURRENT STATUS:
 - High Risk Days: {status['high_risk_days']}
         """
         
-        with open(f"data/{athlete_id}_report.txt", 'w') as f:
+        with open(f"../data/{athlete_id}_report.txt", 'w') as f:
             f.write(report_text)
         
         return f"✅ Report exported: data/{athlete_id}_report.txt"
@@ -661,7 +633,7 @@ CURRENT STATUS:
 
 if __name__ == '__main__':
     print("\n" + "="*70)
-    print("💪 ATHLETE INJURY RISK ENGINE 💪")
+    print("🏃 ATHLETE INJURY RISK ENGINE")
     print("="*70)
     print("\n✅ Starting dashboard...")
     print("📊 Open: http://localhost:1229")
