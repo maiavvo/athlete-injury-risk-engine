@@ -5,22 +5,11 @@ Combines ACWR, load spikes, soreness, and injury history.
 
 import pandas as pd
 import numpy as np
-import os
-import sys
-
-# Get the project root directory
-if __name__ == "__main__":
-    # Running directly
-    DATA_DIR = '../data'
-else:
-    # Running from gunicorn (from root)
-    DATA_DIR = 'data'
 
 
 class InjuryRiskScorer:
     
     def __init__(self):
-        # Weights based on research evidence
         self.weights = {
             'acwr_risk': 0.35,
             'load_spike': 0.25,
@@ -28,7 +17,6 @@ class InjuryRiskScorer:
             'injury_history': 0.20
         }
         
-        # Thresholds calibrated for high-performance athletes
         self.acwr_thresholds = {
             'safe_low': 0.85,
             'safe_high': 1.25,
@@ -223,7 +211,7 @@ class InjuryRiskScorer:
 
 if __name__ == "__main__":
     print("Loading metrics data...")
-    metrics_data = pd.read_csv('data/athlete_metrics.csv')
+    metrics_data = pd.read_csv('../data/athlete_metrics.csv')
     metrics_data['date'] = pd.to_datetime(metrics_data['date'])
     
     scorer = InjuryRiskScorer()
@@ -235,5 +223,5 @@ if __name__ == "__main__":
     print(f"  Low risk days: {(risk_data['risk_category'] == 'Low').sum()}")
     print(f"  Avg risk score: {risk_data['risk_score'].mean():.1f}")
     
-    risk_data.to_csv('data/athlete_risk_scores.csv', index=False)
-    print("\nSaved to data/athlete_risk_scores.csv")
+    risk_data.to_csv('../data/athlete_risk_scores.csv', index=False)
+    print("\nSaved to ../data/athlete_risk_scores.csv")
