@@ -6,6 +6,16 @@ Creates 4 different athlete types to simulate realistic training patterns.
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
+import os
+import sys
+
+# Get the project root directory
+if __name__ == "__main__":
+    # Running directly
+    DATA_DIR = '../data'
+else:
+    # Running from gunicorn (from root)
+    DATA_DIR = 'data'
 
 
 class AthleteDataGenerator:
