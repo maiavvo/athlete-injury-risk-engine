@@ -31,14 +31,14 @@ max_date = risk_data['date'].max()
 date_range_days = (max_date - min_date).days
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
-app.title = "Athlete Risk Monitor Pro"
+app.title = "Athlete Injury Risk Engine"
 server = app.server
 
 app.layout = html.Div([
     html.Div([
-        html.H1("💪 Athlete Performance Engine 💪", 
+        html.H1("💪 Athlete Injury Risk Engine 💪", 
                 style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 10}),
-        html.P("Professional monitoring system for training load and injury risk assessment",
+        html.P("Algorithm powered injury risk prediction and training load management system",
                style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 20})
     ]),
     
@@ -651,7 +651,7 @@ CURRENT STATUS:
 
 if __name__ == '__main__':
     print("\n" + "="*70)
-    print("💪 ATHLETE RISK MONITORING DASHBOARD PRO 💪")
+    print("💪 ATHLETE INJURY RISK ENGINE 💪")
     print("="*70)
     print("\n✅ Starting dashboard...")
     print("📊 Open: http://localhost:1229")
