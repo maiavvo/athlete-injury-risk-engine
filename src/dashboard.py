@@ -10,6 +10,16 @@ import dash
 from dash import dcc, html, Input, Output, State
 import numpy as np
 from datetime import datetime, timedelta
+import os
+import sys
+
+# Get the project root directory
+if __name__ == "__main__":
+    # Running directly
+    DATA_DIR = '../data'
+else:
+    # Running from gunicorn (from root)
+    DATA_DIR = 'data'
 
 COLORS = {
     'safe': '#51CF66',
