@@ -168,5 +168,5 @@ if __name__ == "__main__":
     cohort_data = generator.generate_cohort(num_athletes=20, days=120)
     
     print(f"Generated {len(cohort_data)} records for {cohort_data['athlete_id'].nunique()} athletes")
-    cohort_data.to_csv('data/sample_athlete_data.csv', index=False)
+    cohort_data.to_csv(f'{DATA_DIR}/sample_athlete_data.csv', index=False)
     print("Data saved to data/sample_athlete_data.csv")
