@@ -6,16 +6,6 @@ Creates 4 different athlete types to simulate realistic training patterns.
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
-import os
-import sys
-
-# Get the project root directory
-if __name__ == "__main__":
-    # Running directly
-    DATA_DIR = '../data'
-else:
-    # Running from gunicorn (from root)
-    DATA_DIR = 'data'
 
 
 class AthleteDataGenerator:
@@ -33,7 +23,6 @@ class AthleteDataGenerator:
         data = []
         
         for i, date in enumerate(dates):
-            # Check if athlete trains today
             if np.random.random() < params['training_frequency']:
                 
                 duration = np.random.normal(params['avg_duration'], params['duration_std'])
@@ -44,17 +33,14 @@ class AthleteDataGenerator:
                 day_of_week = date.weekday()
                 week_number = i // 7
                 
-                # Recovery week every 4 weeks
                 if week_number % 4 == 3:
                     intensity *= 0.75
                     duration *= 0.80
                 elif archetype == 'aggressive':
-                    # Random spikes for aggressive trainers
                     if np.random.random() < 0.15:
                         intensity *= 1.4
                         duration *= 1.3
                 
-                # Weekend lighter, mid-week harder
                 if day_of_week in [5, 6]:
                     if archetype in ['conservative', 'optimal']:
                         intensity *= 0.85
@@ -68,14 +54,12 @@ class AthleteDataGenerator:
                 
                 soreness = np.random.normal(params['avg_soreness'], params['soreness_std'])
                 
-                # Higher soreness after hard sessions
                 if session_load > params['avg_duration'] * params['avg_intensity'] * 1.3:
                     soreness += np.random.uniform(1, 2)
                 
                 soreness = max(0, min(10, soreness))
                 
             else:
-                # Rest day
                 duration = 0
                 intensity = 0
                 session_load = 0
@@ -168,5 +152,5 @@ if __name__ == "__main__":
     cohort_data = generator.generate_cohort(num_athletes=20, days=120)
     
     print(f"Generated {len(cohort_data)} records for {cohort_data['athlete_id'].nunique()} athletes")
-    cohort_data.to_csv(f'{DATA_DIR}/sample_athlete_data.csv', index=False)
-    print("Data saved to data/sample_athlete_data.csv")
+    cohort_data.to_csv('../data/sample_athlete_data.csv', index=False)
+    print("Data saved to ../data/sample_athlete_data.csv")
