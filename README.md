@@ -7,9 +7,17 @@ The dashboard lets you select any athlete to view their current risk status thro
 
 There's a team overview that displays the entire roster sorted by risk level, so you can see who needs attention first. You can add new athletes with custom training parameters or remove old ones. The comparison view lets you analyze two athletes side-by-side, and date filtering helps you focus on specific training periods. Everything updates in real-time
 ## How It Works
-The system tracks training duration and intensity (RPE scale 1-10), weekly load patterns (acute vs. chronic), self-reported soreness levels, and previous injury history.
-Then it calculates **ACWR (Acute-to-Chronic Workload Ratio)** - comparing recent training load to what the athlete's body is adapted to. Research shows ACWR > 1.4 significantly increases injury risk.
-The risk model uses a 0-100 scale with weighted factors: ACWR at 35% (primary predictor), load spikes at 25% (sudden increases are dangerous), soreness at 20% (athlete feedback), and injury history at 20% (prior injury increases risk).
+The system tracks:
+- Training duration and intensity (RPE scale 1-10)
+- Weekly load patterns (acute vs. chronic)
+- Self-reported soreness levels
+- Previous injury history
+Then calculates **ACWR (Acute-to-Chronic Workload Ratio)** - comparing recent training load to what the athlete's body is adapted to. Research shows ACWR > 1.4 significantly increases injury risk.
+**Risk Model (0-100 scale):**
+- ACWR: 35% weight (primary predictor)
+- Load spikes: 25% (sudden increases are dangerous)
+- Soreness: 20% (athlete feedback)
+- Injury history: 20% (prior injury increases risk)
 
 ## Tech Stack
 Python, Pandas, NumPy for data processing. Plotly Dash for the interactive dashboard. Deployed on Render.
