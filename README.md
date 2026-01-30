@@ -39,10 +39,12 @@ Testing on 20 simulated athletes over 120 days, the system identified athletes a
 
 ## Athlete Archetypes (Test Data)
 The system simulates four realistic training patterns:
-
 **Conservative (CON)** - Stable training, 5-6 days/week, moderate intensity (RPE ~6.0), low soreness (~3.5/10), no injury history
+
 **Aggressive (AGG)** - Variable loads, 6-7 days/week, high intensity (RPE ~8.0), elevated soreness (~6.0/10), no injury history
+
 **Injury-Prone (INJ)** - Cautious approach, 5 days/week, moderate-high intensity (RPE ~6.5), high soreness (~6.5/10), **prior injury = TRUE**
+
 **Optimal (OPT)** - Evidence-based periodization, 5-6 days/week, controlled intensity (RPE ~7.0), moderate soreness (~4.0/10), no injury history
 
 The injury-prone group consistently scores highest for risk, which validates that the model actually identifies athletes who need closer attention.
