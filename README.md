@@ -25,7 +25,8 @@ The risk score combines:
 - Deployed on Render
 ## Live Demo
 [View Dashboard](https://athlete-injury-risk-engine.onrender.com)**
-*Note: Initial load may take 40-60 seconds as the free-tier server spins up. Please be patient!*
+
+** initial load may take 30-50 seconds as the free-tier server spins up, please be patient **
 ## Running It Locally
 ```bash
 pip install -r requirements.txt
