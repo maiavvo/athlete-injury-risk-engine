@@ -39,6 +39,7 @@ Testing on 20 simulated athletes over 120 days, the system identified athletes a
 
 ## Athlete Archetypes (Test Data)
 The system simulates four realistic training patterns:
+
 **Conservative (CON)** - Stable training, 5-6 days/week, moderate intensity (RPE ~6.0), low soreness (~3.5/10), no injury history
 
 **Aggressive (AGG)** - Variable loads, 6-7 days/week, high intensity (RPE ~8.0), elevated soreness (~6.0/10), no injury history
