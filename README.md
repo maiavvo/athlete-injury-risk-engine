@@ -6,6 +6,7 @@ Monitors athlete training data and flags when someone's at high risk of injury. 
 - **Individual athlete monitoring** - Select an athlete, see their current status
 - **Traffic light gauges** - Green/yellow/red indicators for quick decisions
 - **Team overview** - Check entire roster at once
+  - **Edit Team** - Add team members with custom stats or Remove old team members
 - **Comparison view** - Compare two athletes side by side
 - **Specific recommendations** - Not just "high risk" but "reduce load by 20%"
 The system tracks:
