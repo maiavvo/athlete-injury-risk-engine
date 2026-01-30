@@ -1,39 +1,22 @@
-# 💪 Athlete Injury Risk Prevention Dashboard
+# 💪 Athlete Injury Risk Engine
 A sports medicine analytics system that predicts athlete injury risk using evidence-based training load metrics.
 ## What It Does
 Monitors athlete training data and flags when someone's at high risk of injury. Combines several metrics validated by sports medicine research (ACWR, load spikes, soreness levels) into one 0-100 risk score with specific, actionable recommendations.
 ## Features
-**Individual Athlete Monitoring**
-- Select any athlete to view their current risk status
-- Traffic-light KPI gauges (green/yellow/red) for quick decision-making
-- Specific recommendations like "ACWR elevated at 1.74, reduce load by 28%"
-**Team Management**
-- Team overview displaying entire roster sorted by risk level
-- Add new athletes with custom training parameters
-- Remove athletes from the roster
-**Analysis Tools**
-- Comparison view for side-by-side athlete analysis
-- Date filtering to focus on specific training periods
-- Real-time data updates across all views
+The dashboard lets you select any athlete to view their current risk status through traffic-light KPI gauges (green/yellow/red) for quick decision-making. You get specific recommendations like "ACWR elevated at 1.74, reduce load by 28%" instead of vague warnings.
+
+There's a team overview that displays the entire roster sorted by risk level, so you can see who needs attention first. You can add new athletes with custom training parameters or remove old ones. The comparison view lets you analyze two athletes side-by-side, and date filtering helps you focus on specific training periods. Everything updates in real-time
 ## How It Works
-The system tracks:
-- Training duration and intensity (RPE scale 1-10)
-- Weekly load patterns (acute vs. chronic)
-- Self-reported soreness levels
-- Previous injury history
-Then calculates **ACWR (Acute-to-Chronic Workload Ratio)** - comparing recent training load to what the athlete's body is adapted to. Research shows ACWR > 1.4 significantly increases injury risk.
-**Risk Model (0-100 scale):**
-- ACWR: 35% weight (primary predictor)
-- Load spikes: 25% (sudden increases are dangerous)
-- Soreness: 20% (athlete feedback)
-- Injury history: 20% (prior injury increases risk)
+The system tracks training duration and intensity (RPE scale 1-10), weekly load patterns (acute vs. chronic), self-reported soreness levels, and previous injury history.
+Then it calculates **ACWR (Acute-to-Chronic Workload Ratio)** - comparing recent training load to what the athlete's body is adapted to. Research shows ACWR > 1.4 significantly increases injury risk.
+The risk model uses a 0-100 scale with weighted factors: ACWR at 35% (primary predictor), load spikes at 25% (sudden increases are dangerous), soreness at 20% (athlete feedback), and injury history at 20% (prior injury increases risk).
+
 ## Tech Stack
-- Python, Pandas, NumPy for data processing
-- Plotly Dash for interactive dashboard
-- Deployed on Render
+Python, Pandas, NumPy for data processing. Plotly Dash for the interactive dashboard. Deployed on Render.
+
 ## Live Demo
 **[View Dashboard](https://athlete-injury-risk-engine.onrender.com)**
-## **Initial load may take 30-50 seconds as the free-tier server spins up**
+**Initial load may take 30-50 seconds as the free-tier server spins up, please be patient!**
 
 ## Running Locally
 ```bash
@@ -43,13 +26,8 @@ python src/load_metrics.py    # Calculates ACWR and metrics
 python src/risk_model.py      # Generates risk scores
 python src/dashboard.py       # Launches dashboard at localhost:1229
 ```
-
 ## Sample Results
-Testing on 20 simulated athletes over 120 days:
-- Identified athletes at 69.5/100 and 73.4/100 risk requiring immediate intervention
-- Detected ACWR spikes above 1.4 threshold (peak of 1.74)
-- Flagged 30 high-risk days and 52 moderate-risk days across the cohort
-- Generated specific load reduction recommendations (e.g., "reduce by 28%")
+Testing on 20 simulated athletes over 120 days, the system identified athletes at 69.5/100 and 73.4/100 risk requiring immediate intervention. It detected ACWR spikes above the 1.4 threshold (peak of 1.74) and flagged 30 high-risk days and 52 moderate-risk days across the cohort. Each high-risk athlete got specific load reduction recommendations (like "reduce by 28%").
 
 ## Athlete Archetypes (Test Data)
 The system simulates four realistic training patterns:
@@ -57,14 +35,12 @@ The system simulates four realistic training patterns:
 **Aggressive (AGG)** - Variable loads, 6-7 days/week, high intensity (RPE ~8.0), elevated soreness (~6.0/10), no injury history
 **Injury-Prone (INJ)** - Cautious approach, 5 days/week, moderate-high intensity (RPE ~6.5), high soreness (~6.5/10), **prior injury = TRUE**
 **Optimal (OPT)** - Evidence-based periodization, 5-6 days/week, controlled intensity (RPE ~7.0), moderate soreness (~4.0/10), no injury history
-The injury-prone group consistently scores highest for risk, validating the model's ability to identify athletes requiring closer attention.
+The injury-prone group consistently scores highest for risk, which validates that the model actually identifies athletes who need closer attention.
+
 ## Limitations
-- The system uses synthetic data that is not validated with actual injury outcomes, so it would require real athlete data and injury records to tune the model properly.
-- The risk thresholds may need adjustment based on sport type and competition level and is NOT a replacement for coaching expertise or athlete self-awareness.
+Uses synthetic data, so it's not validated with actual injury outcomes. Would need real athlete data and injury records to tune the model properly. Risk thresholds may need adjustment based on sport type and competition level. Also not a replacement for coaching expertise or athlete self-awareness - coaches and athletes know things algorithms can't capture.
 
 ## Future Enhancements
-- Integration with wearable devices (GPS trackers, heart rate monitors)
-- Machine learning model trained on real injury data
-- Automated alerts and notifications, export reports for medical staff
+Integration with wearable devices (GPS trackers, heart rate monitors), machine learning model trained on real injury data, mobile app version, automated alerts and notifications, export reports for medical staff.
 ---
 Built as a portfolio project exploring how to translate sports medicine research into practical tools.
