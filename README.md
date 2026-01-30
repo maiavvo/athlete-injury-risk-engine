@@ -55,5 +55,6 @@ Uses synthetic data, so it's not validated with actual injury outcomes. Would ne
 
 ## Future Enhancements
 Integration with wearable devices (GPS trackers, heart rate monitors), machine learning model trained on real injury data, mobile app version, automated alerts and notifications, export reports for medical staff.
+
 ---
 Built as a portfolio project exploring how to translate sports medicine research into practical tools.
