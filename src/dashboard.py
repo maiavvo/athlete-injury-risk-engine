@@ -36,16 +36,16 @@ server = app.server
 
 app.layout = html.Div([
     html.Div([
-        html.H1("🏃 Athlete Injury Risk Engine", 
+        html.H1("💪 Athlete Injury Risk Engine 💪", 
                 style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 10}),
-        html.P("AI-powered injury risk prediction and training load management system",
+        html.P("A dashboard that predicts injury risk for athletes by analyzing their training load patterns.",
                style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 20})
     ]),
     
     dcc.Tabs(id='main-tabs', value='individual', children=[
-        dcc.Tab(label='👤 Individual Athlete', value='individual'),
-        dcc.Tab(label='👥 Team Overview', value='team'),
-        dcc.Tab(label='⚖️ Compare Athletes', value='compare')
+        dcc.Tab(label='🎱 Individual Athlete', value='individual'),
+        dcc.Tab(label='🏀 Team Overview', value='team'),
+        dcc.Tab(label='🎥 Compare Athletes', value='compare')
     ]),
     
     html.Div(id='tab-content', style={'marginTop': 20})
@@ -240,7 +240,7 @@ def render_individual_tab():
                 )
             ], style={'display': 'inline-block', 'width': '500px', 'verticalAlign': 'top'}),
             
-            html.Button('📄 Export Report', id='export-btn', n_clicks=0,
+            html.Button('💼 Export Report', id='export-btn', n_clicks=0,
                        style={'marginLeft': 20, 'padding': '10px 20px', 'fontSize': 14,
                               'backgroundColor': COLORS['acute'], 'color': 'white',
                               'border': 'none', 'borderRadius': '5px', 'cursor': 'pointer'})
@@ -256,7 +256,7 @@ def render_individual_tab():
 
 def render_team_tab():
     return html.Div([
-        html.H2("👥 Team Risk Overview", style={'marginLeft': 20, 'color': COLORS['text']}),
+        html.H2("🏀 Team Risk Overview", style={'marginLeft': 20, 'color': COLORS['text']}),
         html.P("Current status for all athletes based on last 7 days",
                style={'marginLeft': 20, 'color': COLORS['text'], 'marginBottom': 30}),
         html.Div(id='team-grid')
@@ -265,7 +265,7 @@ def render_team_tab():
 
 def render_compare_tab():
     return html.Div([
-        html.H2("⚖️ Compare Athletes", style={'marginLeft': 20, 'color': COLORS['text']}),
+        html.H2("🎥 Compare Athletes", style={'marginLeft': 20, 'color': COLORS['text']}),
         html.Div([
             html.Div([
                 html.Label("Athlete 1:", style={'fontWeight': 'bold', 'marginRight': 10}),
@@ -568,7 +568,7 @@ def update_individual_dashboard(athlete_id, date_range):
         if risk_row['soreness'] > 5:
             recommendations.append(f"⚠️ Elevated soreness ({risk_row['soreness']:.1f}/10) - Prioritize recovery")
         if risk_row['has_prior_injury']:
-            recommendations.append("ℹ️ Prior injury history - Continue conservative progression")
+            recommendations.append("🪃 Prior injury history - Continue conservative progression")
         if risk_row['risk_category'] == 'High':
             recommendations.append("🚨 HIGH RISK - Consider medical consultation")
         
@@ -633,7 +633,7 @@ CURRENT STATUS:
 
 if __name__ == '__main__':
     print("\n" + "="*70)
-    print("🏃 ATHLETE INJURY RISK ENGINE")
+    print("💪 ATHLETE INJURY RISK ENGINE 💪")
     print("="*70)
     print("\n✅ Starting dashboard...")
     print("📊 Open: http://localhost:1229")
