@@ -38,7 +38,7 @@ app.layout = html.Div([
     html.Div([
         html.H1("💪 Athlete Injury Risk Engine 💪", 
                 style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 10}),
-        html.P("A dashboard that predicts injury risk for athletes by analyzing their training load patterns.",
+        html.P("A Sports Medicine Analytics System for Training Load–Based Injury Risk Assessment",
                style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 20})
     ]),
     
