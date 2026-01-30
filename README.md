@@ -24,7 +24,7 @@ Python, Pandas, NumPy for data processing. Plotly Dash for the interactive dashb
 
 ## Live Demo
 **[View Dashboard](https://athlete-injury-risk-engine.onrender.com)**
-**Initial load may take 30-50 seconds as the free-tier server spins up, please be patient!**
+** 👾 Initial load may take 30-50 seconds as the free-tier server spins up, please be patient! 👾 **
 
 ## Running Locally
 ```bash
