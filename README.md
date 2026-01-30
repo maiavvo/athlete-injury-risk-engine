@@ -23,6 +23,9 @@ The risk score combines:
 - Python, Pandas, NumPy for data processing
 - Plotly Dash for the interactive dashboard
 - Deployed on Render
+## Live Demo
+[View Dashboard](https://athlete-injury-risk-engine.onrender.com)**
+*Note: Initial load may take 40-60 seconds as the free-tier server spins up. Please be patient!*
 ## Running It Locally
 ```bash
 pip install -r requirements.txt
