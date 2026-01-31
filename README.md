@@ -1,4 +1,4 @@
-# Athlete Injury Risk Engine
+## Athlete Injury Risk Engine
 A sports medicine analytics system that predicts athlete injury risk using evidence-based training load metrics.
 #### What It Does
 Monitors athlete training data and flags when someone's at high risk of injury. Combines several metrics validated by sports medicine research (ACWR, load spikes, soreness levels) into one 0-100 risk score with specific, actionable recommendations.
