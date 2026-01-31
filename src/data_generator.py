@@ -1,9 +1,21 @@
 """
 data_generator.py
 
+Generates synthetic athlete training data that mimics realistic patterns.
+This allows ethical experimentation without using real patient data.
+
+Athlete Archetypes:
+1. Conservative Trainer - Stable, consistent training loads
+2. Aggressive Trainer - High intensity, frequent load spikes
+3. Injury-Prone - Previous injury history, higher soreness
+4. Optimal Trainer - Well-periodized, proper recovery
+5. Custom - User-defined parameters
+"""
+
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
+
 
 class AthleteDataGenerator:
     """
@@ -20,15 +32,12 @@ class AthleteDataGenerator:
         
         params = self._get_archetype_parameters(archetype)
         
-        # Generate dates
         start_date = datetime.now() - timedelta(days=days)
         dates = [start_date + timedelta(days=i) for i in range(days)]
         
-        # Initialize data storage
         data = []
         
         for i, date in enumerate(dates):
-            # Determine if athlete trains this day
             if np.random.random() < params['training_frequency']:
                 
                 duration = np.random.normal(
@@ -45,7 +54,6 @@ class AthleteDataGenerator:
                 day_of_week = date.weekday()
                 week_number = i // 7
                 
-                # Recovery week every 4 weeks
                 if week_number % 4 == 3:
                     intensity *= 0.75
                     duration *= 0.80
