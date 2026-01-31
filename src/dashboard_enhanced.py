@@ -61,7 +61,7 @@ app.layout = html.Div([
     dcc.Store(id='athlete-data-store', data=risk_data.to_json(date_format='iso', orient='split')),
     
     html.Div([
-        html.H1("💪 Athlete Injury Risk Engine 💪", 
+        html.H1("Athlete Injury Risk Engine", 
                 style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 10}),
         html.P("Interactive risk prediction with athlete management",
                style={'textAlign': 'center', 'color': COLORS['text'], 'marginBottom': 20})
@@ -579,7 +579,7 @@ def add_new_athlete(n_clicks, athlete_id, archetype, has_injury, days,
         return stored_data, ""
     
     if not athlete_id:
-        return stored_data, "❌ Please enter an athlete ID"
+        return stored_data, "Please enter an athlete ID"
     
     # Load current data
     current_data = pd.read_json(StringIO(stored_data), orient='split')
@@ -587,7 +587,7 @@ def add_new_athlete(n_clicks, athlete_id, archetype, has_injury, days,
     
     # Check if athlete already exists
     if athlete_id in current_data['athlete_id'].values:
-        return stored_data, f"❌ Athlete {athlete_id} already exists!"
+        return stored_data, f"Athlete {athlete_id} already exists!"
     
     # Generate new athlete data
     from data_generator import AthleteDataGenerator
@@ -624,7 +624,7 @@ def add_new_athlete(n_clicks, athlete_id, archetype, has_injury, days,
     # Combine with existing data
     updated_data = pd.concat([current_data, new_athlete_risk], ignore_index=True)
     
-    return updated_data.to_json(date_format='iso', orient='split'), f"✅ Added {athlete_id} with {days} days of data!"
+    return updated_data.to_json(date_format='iso', orient='split'), f"Added {athlete_id} with {days} days of data!"
 
 
 @app.callback(
@@ -646,7 +646,7 @@ def delete_athlete(n_clicks, athlete_id, stored_data):
     # Remove athlete
     updated_data = current_data[current_data['athlete_id'] != athlete_id]
     
-    return updated_data.to_json(date_format='iso', orient='split'), f"✅ Deleted {athlete_id}"
+    return updated_data.to_json(date_format='iso', orient='split'), f"Deleted {athlete_id}"
 
 
 @app.callback(
@@ -723,7 +723,7 @@ def add_training_session(n_clicks, athlete_id, date, duration, intensity, sorene
     other_data = current_data[current_data['athlete_id'] != athlete_id]
     updated_data = pd.concat([other_data, athlete_risk], ignore_index=True)
     
-    return updated_data.to_json(date_format='iso', orient='split'), f"✅ Added session for {athlete_id} on {date}"
+    return updated_data.to_json(date_format='iso', orient='split'), f"Added session for {athlete_id} on {date}"
 
 
 # Keep all the other callbacks from original dashboard
@@ -1014,20 +1014,20 @@ def update_individual_dashboard(athlete_id, date_range, stored_data):
         recommendations = []
         
         if risk_row['acwr'] > 1.4:
-            recommendations.append(f"⚠️ ACWR elevated at {risk_row['acwr']:.2f} - Reduce load by {int((risk_row['acwr']-1.25)/risk_row['acwr']*100)}%")
+            recommendations.append(f"ACWR elevated at {risk_row['acwr']:.2f} - Reduce load by {int((risk_row['acwr']-1.25)/risk_row['acwr']*100)}%")
         if risk_row['load_spike']:
-            recommendations.append("⚠️ Recent load spike - Maintain current volume 1-2 weeks")
+            recommendations.append("Recent load spike - Maintain current volume 1-2 weeks")
         if risk_row['soreness'] > 5:
-            recommendations.append(f"⚠️ Elevated soreness ({risk_row['soreness']:.1f}/10) - Prioritize recovery")
+            recommendations.append(f"Elevated soreness ({risk_row['soreness']:.1f}/10) - Prioritize recovery")
         if risk_row['has_prior_injury']:
-            recommendations.append("🤔 Prior injury history - Continue conservative progression")
+            recommendations.append("Prior injury history - Continue conservative progression")
         if risk_row['risk_category'] == 'High':
-            recommendations.append("🚨 HIGH RISK - Consider medical consultation")
+            recommendations.append("HIGH RISK - Consider medical consultation")
         
         rec_items = [html.Li(rec, style={'marginBottom': 8}) for rec in recommendations]
         
         rec_panel = html.Div([
-            html.H3("💪 Current Recommendations", style={'color': COLORS['text'], 'marginBottom': 15}),
+            html.H3("Current Recommendations", style={'color': COLORS['text'], 'marginBottom': 15}),
             html.Ul(rec_items)
         ], style={
             'backgroundColor': 'white',
@@ -1052,9 +1052,9 @@ def update_individual_dashboard(athlete_id, date_range, stored_data):
 
 if __name__ == '__main__':
     print("\n" + "="*70)
-    print("💪 ENHANCED ATHLETE INJURY RISK ENGINE 💪")
+    print("ATHLETE INJURY RISK ENGINE")
     print("="*70)
-    print("\n✅ Starting dashboard with athlete management...")
+    print("\n Starting dashboard with athlete management...")
     print("🔧 NEW FEATURES:")
     print("   • Add new athletes with custom parameters")
     print("   • Delete athletes from roster")
