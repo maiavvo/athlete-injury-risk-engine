@@ -1,15 +1,15 @@
 # Athlete Injury Risk Engine
 A sports medicine analytics system that predicts athlete injury risk using evidence-based training load metrics.
-## What It Does
+#### What It Does
 Monitors athlete training data and flags when someone's at high risk of injury. Combines several metrics validated by sports medicine research (ACWR, load spikes, soreness levels) into one 0-100 risk score with specific, actionable recommendations.
-## Features
+#### Features
 The dashboard lets you select any athlete to view their current risk status through traffic-light KPI gauges (green/yellow/red) for quick decision-making. You get specific recommendations like "ACWR elevated at 1.74, reduce load by 28%" instead of vague warnings.
 <img width="1478" height="670" alt="Screenshot 2026-01-29 at 4 48 58 PM" src="https://github.com/user-attachments/assets/8efc7099-66ea-4b26-8deb-88b096e46e90" />
 
 There's a team overview that displays the entire roster sorted by risk level, so you can see who needs attention first. You can add new athletes with custom training parameters or remove old ones. The comparison view lets you analyze two athletes side-by-side, and date filtering helps you focus on specific training periods. Everything updates in real-time
 <img width="1409" height="681" alt="Screenshot 2026-01-29 at 6 23 06 PM" src="https://github.com/user-attachments/assets/68bf76fc-d337-4e1a-8fa7-1ebea84658b2" />
 
-## How It Works
+#### How It Works
 The system tracks:
 - Training duration and intensity (RPE scale 1-10)
 - Weekly load patterns (acute vs. chronic)
@@ -23,14 +23,11 @@ Then calculates **ACWR (Acute-to-Chronic Workload Ratio)** - comparing recent tr
 - Injury history: 20% (prior injury increases risk)
 <img width="1409" height="812" alt="Screenshot 2026-01-29 at 6 22 27 PM" src="https://github.com/user-attachments/assets/09e535b7-8d23-4d53-97d8-92036d572a2b" />
 
-## Tech Stack
-Python, Pandas, NumPy for data processing. Plotly Dash for the interactive dashboard. Deployed on Render.
-
 ## Live Demo
 **[View Dashboard](https://athlete-injury-risk-engine.onrender.com)**
 **👾 Initial load may take 30-50 seconds as the free-tier server spins up, please be patient! 👾**
 
-## Running Locally
+#### Running Locally
 ```bash
 pip install -r requirements.txt
 python src/data_generator.py  # Creates sample data
@@ -38,10 +35,10 @@ python src/load_metrics.py    # Calculates ACWR and metrics
 python src/risk_model.py      # Generates risk scores
 python src/dashboard.py       # Launches dashboard at localhost:1229
 ```
-## Sample Results
+#### Sample Results
 Testing on 20 simulated athletes over 120 days, the system identified athletes at 69.5/100 and 73.4/100 risk requiring immediate intervention. It detected ACWR spikes above the 1.4 threshold (peak of 1.74) and flagged 30 high-risk days and 52 moderate-risk days across the cohort. Each high-risk athlete got specific load reduction recommendations (like "reduce by 28%").
 
-## Athlete Archetypes (Test Data)
+#### Athlete Archetypes (Test Data)
 The system simulates four realistic training patterns:
 
 **Conservative (CON)** - Stable training, 5-6 days/week, moderate intensity (RPE ~6.0), low soreness (~3.5/10), no injury history
@@ -54,11 +51,14 @@ The system simulates four realistic training patterns:
 
 The injury-prone group consistently scores highest for risk, which validates that the model actually identifies athletes who need closer attention.
 
-## Limitations
+#### Limitations
 Uses synthetic data, so it's not validated with actual injury outcomes. Would need real athlete data and injury records to tune the model properly. Risk thresholds may need adjustment based on sport type and competition level. Also not a replacement for coaching expertise or athlete self-awareness - coaches and athletes know things algorithms can't capture.
 
-## Future Enhancements
+#### Future Enhancements
 Integration with wearable devices (GPS trackers, heart rate monitors), machine learning model trained on real injury data, mobile app version, automated alerts and notifications, export reports for medical staff.
+
+#### Tech Stack
+Python, Pandas, NumPy for data processing. Plotly Dash for the interactive dashboard. Deployed on Render.
 
 ---
 Built as a portfolio project exploring how to translate sports medicine research into practical tools.
