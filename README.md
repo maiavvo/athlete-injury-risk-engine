@@ -4,8 +4,11 @@ A sports medicine analytics system that predicts athlete injury risk using evide
 Monitors athlete training data and flags when someone's at high risk of injury. Combines several metrics validated by sports medicine research (ACWR, load spikes, soreness levels) into one 0-100 risk score with specific, actionable recommendations.
 ## Features
 The dashboard lets you select any athlete to view their current risk status through traffic-light KPI gauges (green/yellow/red) for quick decision-making. You get specific recommendations like "ACWR elevated at 1.74, reduce load by 28%" instead of vague warnings.
+<img width="1478" height="670" alt="Screenshot 2026-01-29 at 4 48 58 PM" src="https://github.com/user-attachments/assets/8efc7099-66ea-4b26-8deb-88b096e46e90" />
 
 There's a team overview that displays the entire roster sorted by risk level, so you can see who needs attention first. You can add new athletes with custom training parameters or remove old ones. The comparison view lets you analyze two athletes side-by-side, and date filtering helps you focus on specific training periods. Everything updates in real-time
+<img width="1409" height="681" alt="Screenshot 2026-01-29 at 6 23 06 PM" src="https://github.com/user-attachments/assets/68bf76fc-d337-4e1a-8fa7-1ebea84658b2" />
+
 ## How It Works
 The system tracks:
 - Training duration and intensity (RPE scale 1-10)
@@ -18,6 +21,7 @@ Then calculates **ACWR (Acute-to-Chronic Workload Ratio)** - comparing recent tr
 - Load spikes: 25% (sudden increases are dangerous)
 - Soreness: 20% (athlete feedback)
 - Injury history: 20% (prior injury increases risk)
+<img width="1409" height="812" alt="Screenshot 2026-01-29 at 6 22 27 PM" src="https://github.com/user-attachments/assets/09e535b7-8d23-4d53-97d8-92036d572a2b" />
 
 ## Tech Stack
 Python, Pandas, NumPy for data processing. Plotly Dash for the interactive dashboard. Deployed on Render.
