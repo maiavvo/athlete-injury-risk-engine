@@ -5,7 +5,7 @@ Monitors athlete training data and flags when someone's at high risk of injury. 
 #### Features
 The dashboard lets you select any athlete to view their current risk status through traffic-light KPI gauges (green/yellow/red) for quick decision-making. You get specific recommendations like "ACWR elevated at 1.74, reduce load by 28%" instead of vague warnings.
 
-<img width="1428" height="676" alt="Screenshot 2026-02-02 at 7 47 06 PM" src="https://github.com/user-attachments/assets/2eb115ff-7aec-48ba-8f13-034ce1563ec9" />
+<img width="1425" height="645" alt="Screenshot 2026-02-02 at 7 47 06 PM" src="https://github.com/user-attachments/assets/380fe55e-ad86-4d29-b5f3-44d66d7a9afa" />
 
 There's a team overview that displays the entire roster sorted by risk level, so you can see who needs attention first. 
 
