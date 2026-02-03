@@ -5,11 +5,16 @@ Monitors athlete training data and flags when someone's at high risk of injury. 
 #### Features
 The dashboard lets you select any athlete to view their current risk status through traffic-light KPI gauges (green/yellow/red) for quick decision-making. You get specific recommendations like "ACWR elevated at 1.74, reduce load by 28%" instead of vague warnings.
 
-<img width="1478" height="670" alt="Screenshot 2026-01-29 at 4 48 58 PM" src="https://github.com/user-attachments/assets/8efc7099-66ea-4b26-8deb-88b096e46e90" />
+<img width="1428" height="676" alt="Screenshot 2026-02-02 at 7 47 06 PM" src="https://github.com/user-attachments/assets/2eb115ff-7aec-48ba-8f13-034ce1563ec9" />
 
-There's a team overview that displays the entire roster sorted by risk level, so you can see who needs attention first. You can add new athletes with custom training parameters or remove old ones. The comparison view lets you analyze two athletes side-by-side, and date filtering helps you focus on specific training periods. Everything updates in real-time
+There's a team overview that displays the entire roster sorted by risk level, so you can see who needs attention first. 
 
-<img width="1409" height="681" alt="Screenshot 2026-01-29 at 6 23 06 PM" src="https://github.com/user-attachments/assets/68bf76fc-d337-4e1a-8fa7-1ebea84658b2" />
+<img width="1428" height="676" alt="Screenshot 2026-02-02 at 7 48 04 PM" src="https://github.com/user-attachments/assets/a370e973-55b8-4480-bc5b-cb0b7ab88f56" />
+
+You can add new athletes with custom training parameters or remove old ones. 
+The comparison view lets you analyze two athletes side-by-side, and date filtering helps you focus on specific training periods. Everything updates in real-time
+
+<img width="1428" height="676" alt="Screenshot 2026-02-02 at 7 48 32 PM" src="https://github.com/user-attachments/assets/8fbf733a-424a-423a-be29-007c95332c35" />
 
 #### How It Works
 The system tracks:
@@ -23,7 +28,8 @@ Then calculates **ACWR (Acute-to-Chronic Workload Ratio)** - comparing recent tr
 - Load spikes: 25% (sudden increases are dangerous)
 - Soreness: 20% (athlete feedback)
 - Injury history: 20% (prior injury increases risk)
-<img width="1409" height="812" alt="Screenshot 2026-01-29 at 6 22 27 PM" src="https://github.com/user-attachments/assets/09e535b7-8d23-4d53-97d8-92036d572a2b" />
+  
+<img width="1428" height="676" alt="Screenshot 2026-02-02 at 7 47 52 PM" src="https://github.com/user-attachments/assets/486ce414-6586-4ecb-9acf-ab9a414d6cf9" />
 
 ## Live Demo
 **[View Dashboard](https://athlete-injury-risk-engine.onrender.com)**
